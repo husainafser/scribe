@@ -1,0 +1,53 @@
+<app-menu [uid]="user"></app-menu>
+<div class="container">
+    <div class="row">
+        <div class="offset-sm-2 col-md-8">
+            <div class="card text-blank border-0">
+                <div class="card-body">
+                    <div class="card-title text-center">
+                        <h5>Sign up for free</h5>
+                    </div>
+                    <div class="card-text text-center">
+                        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="First Name" [formControl]="$any(myForm.controls['firstName'])">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Last Name" [formControl]="$any(myForm.controls['lastName'])">
+                            </div>
+                            <div class="alert alert-danger" *ngIf="(!myForm.controls['firstName'].valid || !myForm.controls['lastName'].valid)&&(myForm.controls['firstName'].touched || myForm.controls['lastName'].touched)">
+                                First and Last Name are required.
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Email" [formControl]="$any(myForm.controls['email'])">
+                            </div>
+                            <div class="alert alert-danger" *ngIf="(!myForm.controls['email'].valid && myForm.controls['email'].touched)">
+                                A valid email is required.
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Enter Password" [formControl]="$any(myForm.controls['password'])">
+                            </div>
+                            <div class="alert alert-danger" *ngIf="(!myForm.controls['password'].valid && myForm.controls['password'].touched)">
+                                Password must be of 8 characters atleast.
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Confirm Password" [formControl]="$any(myForm.controls['confirmPassword'])">
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-block btn-warning" [disabled]="!myForm.valid" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert" *ngIf="errmsg!=''">
+                     {{errmsg}}    
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert" *ngIf="message!=''">
+                        {{message}}   
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

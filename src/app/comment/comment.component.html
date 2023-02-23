@@ -1,0 +1,30 @@
+<div class="row mt-5" *ngIf="loggedIn">
+    <div class="col">
+        <textarea  rows="3" style="width:100%" placeholder="Your Comment here..." [(ngModel)]="comment"></textarea>
+    </div>
+</div>
+<div class="row" *ngIf="loggedIn">
+    <div class="col">
+        <div class="pull-right">
+            <button class="btn btn-primary" style="float: right;" (click)="postComment()">Post</button>
+        </div>
+    </div>
+</div>
+<div class="alert alert-primary" *ngIf="!loggedIn">Please login to post a comment</div>
+<h4 *ngIf="loggedIn">Comment ({{comments.length}})</h4>
+
+<div class="row mt-3" *ngFor="let comment of comments">
+    
+        <div class="col">
+            <div class="card">  
+            
+                <div class="card-header">
+                    {{comment['uid']}}  <span style="float: right;"><i>commented on </i>{{comment['date']}}</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">{{comment['comment']}}</div>
+                </div>
+            </div>
+        </div>
+
+</div>
